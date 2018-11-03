@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.artech.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.artech.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.artech.com/Imports">
+      <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd0" namespace="http://www.artech.com/" />
+      <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CalculatorService_ADD_InputMessage">
+    <wsdl:part name="parameters" element="tns:ADD" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_ADD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ADDResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_GetUserInfoById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoById" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_GetUserInfoById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_SaveUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUser" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_SaveUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_ByUserPwdAndUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:ByUserPwdAndUserName" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_ByUserPwdAndUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ByUserPwdAndUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_ByUserNameUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ByUserNameUser" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_ByUserNameUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ByUserNameUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CalculatorService">
+    <wsdl:operation name="ADD">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/ADD" message="tns:CalculatorService_ADD_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/ADDResponse" message="tns:CalculatorService_ADD_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/GetUsers" message="tns:CalculatorService_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/GetUsersResponse" message="tns:CalculatorService_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoById">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/GetUserInfoById" message="tns:CalculatorService_GetUserInfoById_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/GetUserInfoByIdResponse" message="tns:CalculatorService_GetUserInfoById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/SaveUser" message="tns:CalculatorService_SaveUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/SaveUserResponse" message="tns:CalculatorService_SaveUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/DeleteUser" message="tns:CalculatorService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/DeleteUserResponse" message="tns:CalculatorService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/UpdateUser" message="tns:CalculatorService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/UpdateUserResponse" message="tns:CalculatorService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ByUserPwdAndUserName">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/ByUserPwdAndUserName" message="tns:CalculatorService_ByUserPwdAndUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/ByUserPwdAndUserNameResponse" message="tns:CalculatorService_ByUserPwdAndUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ByUserNameUser">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/ByUserNameUser" message="tns:CalculatorService_ByUserNameUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/ByUserNameUserResponse" message="tns:CalculatorService_ByUserNameUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
