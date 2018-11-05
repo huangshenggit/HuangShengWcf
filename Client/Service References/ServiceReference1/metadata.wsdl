@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd0" namespace="http://www.artech.com/" />
       <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd2" />
+      <xsd:import schemaLocation="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Entity" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="CalculatorService_ADD_InputMessage">

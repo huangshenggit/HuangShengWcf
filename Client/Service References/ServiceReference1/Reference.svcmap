@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="metadata.xsd" MetadataType="Schema" ID="08d971a6-1d2b-4706-9590-fd9eddaaf82d" SourceId="1" SourceUrl="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd2" />
+    <MetadataFile FileName="metadata3.xsd" MetadataType="Schema" ID="d45ebacb-bfd6-47fe-aa25-4857f5920b7a" SourceId="1" SourceUrl="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd3" />
     <MetadataFile FileName="metadata1.xsd" MetadataType="Schema" ID="f4a6e110-4f6b-4636-a6c4-20c077299999" SourceId="1" SourceUrl="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd0" />
     <MetadataFile FileName="metadata2.xsd" MetadataType="Schema" ID="987d188b-c688-41c9-9e54-0a3178aeed3e" SourceId="1" SourceUrl="http://127.0.0.1:9999/calculatorservice/metadata?xsd=xsd1" />
     <MetadataFile FileName="CalculatorService.wsdl" MetadataType="Wsdl" ID="cc9b18b0-60cc-4742-8fc6-d6f6653454aa" SourceId="1" SourceUrl="http://127.0.0.1:9999/calculatorservice/metadata" />

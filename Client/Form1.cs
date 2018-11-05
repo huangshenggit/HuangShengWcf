@@ -70,13 +70,22 @@ namespace Client
         /// </summary>
         /// <param name="FileName"></param>
         /// <returns></returns>
-        private string GetSelectID(string FileName)//FileName 控件绑定的FileName的属性
+        //private string GetSelectID(string FileName)//FileName 控件绑定的FileName的属性
+        //{
+        //    int[] pRows = this.gridView1.GetSelectedRows();//传递实体类过去 获取选中的行
+        //    if (pRows.GetLength(0) > 0)
+        //        return gridView1.GetRowCellValue(pRows[0], FileName).ToString();
+        //    else
+        //        return null;       
+        //}
+        
+           
+            
+            //获取点击的实体
+        private EntityAdmin getEntity(EntityAdmin entity)
         {
-            int[] pRows = this.gridView1.GetSelectedRows();//传递实体类过去 获取选中的行
-            if (pRows.GetLength(0) > 0)
-                return gridView1.GetRowCellValue(pRows[0], FileName).ToString();
-            else
-                return null;
+            var tt = gridView1.GetRow(gridView1.FocusedRowHandle) as EntityAdmin;
+            return tt;
         }
 
         /// <summary>
@@ -90,19 +99,22 @@ namespace Client
         /// </summary>
         public void Save()
         {
+            EntityAdmin entity = new EntityAdmin();
             var username = this.txtUserName.Text;
             var userpwd = this.txtUserPwd.Text;
+            entity.username = username;
+            entity.userpwd = userpwd;
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
               //判断用户名密码是否为空
                 if ((username != "") && (userpwd != ""))
                 {
                     //判断用户名是否存在
-                    DataSet ds = client.ByUserNameUser(username);
+                    DataSet ds = client.ByUserNameUser(entity);
                     if (ds.Tables[0].Rows.Count <= 0)
                     {
                          //添加用户
-                        if (client.SaveUser(username, userpwd) == true)
+                        if (client.SaveUser(entity) == true)
                         {
                             BindGridConrtl();
                             MessageBox.Show("添加成功");
@@ -133,9 +145,11 @@ namespace Client
 
                 if (dr == DialogResult.OK)
                 {
-                    var GetId = GetSelectID("id");
-                    int Id = int.Parse(GetId);
-                    client.DeleteUser(Id);
+                    EntityAdmin entity = new EntityAdmin();
+                    //var GetId = GetSelectID("id");
+                    //int Id = int.Parse(GetId);
+                    var tt = getEntity(entity);
+                    client.DeleteUser(tt);
                     BindGridConrtl();
                     MessageBox.Show("删除成功");
                     this.txtUserName.Text = "";
@@ -158,14 +172,18 @@ namespace Client
         public void ShowNamePwd()
         {
             //int id=Convert.ToInt32(GetSelectID("id"));
-            int id = int.Parse(GetSelectID("id"));//获取选中Id
+            //int id = int.Parse(GetSelectID("id"));//获取选中Id
+            EntityAdmin entity = new EntityAdmin();
+            var tt = getEntity(entity);
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
-                DataSet _result = client.GetUserInfoById(id);
+                // DataSet _result = client.GetUserInfoById(id);
                 //List<EntityAdmin> list= GetList(_result);
                 //this.txtUserName.Text=_result.Tables[0].Rows[i]["UserName"].ToString();
-                this.txtUserName.Text = _result.Tables[0].Rows[0]["UserName"].ToString();
-                this.txtUserPwd.Text = _result.Tables[0].Rows[0]["UserPwd"].ToString();
+                //this.txtUserName.Text = _result.Tables[0].Rows[0]["UserName"].ToString();
+                // this.txtUserPwd.Text = _result.Tables[0].Rows[0]["UserPwd"].ToString();
+                this.txtUserName.Text = tt.username;
+                this.txtUserPwd.Text = tt.userpwd;
 
             }
         }
@@ -187,12 +205,15 @@ namespace Client
         /// <param name="e"></param>
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            var username = this.txtUserName.Text;
-            var userpwd = this.txtUserPwd.Text;
+            EntityAdmin entity = new EntityAdmin();
+            entity.username = this.txtUserName.Text;
+            entity.userpwd = this.txtUserPwd.Text;
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
-               DataSet _result =client.ByUserPwdAndUserName(username,userpwd);
+               
+               DataSet _result =client.ByUserPwdAndUserName(entity);
             List<EntityAdmin> list=  GetList(_result);
+
                 this.gridControl1.DataSource = list;
             }
         }
@@ -208,27 +229,22 @@ namespace Client
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var username = this.txtUserName.Text;
-            var userpwd = this.txtUserPwd.Text;
+            EntityAdmin entity = new EntityAdmin();
+            var tt = getEntity(entity);
+             entity.username = this.txtUserName.Text;
+             entity.userpwd = this.txtUserPwd.Text;
+            entity.id = tt.id;
+         
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
-                int[] a = gridView1.GetSelectedRows();//获取选中行的序列号
-                //this.m_View.FocusedRowChanged += new
-                // DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(m_View_FocusedRowChanged);
-                //var a=this.gridControl1.Focused;
-                int id = int.Parse(GetSelectID("id"));
+              
                 //判断用户名密码是否为空
-                if ((username != "") && (userpwd != ""))
+                if ((entity.username != "") && (entity.userpwd != ""))
                 {
-                    //判断用户名或密码是否存在
-                   // DataSet ds = client.ByUserNameUser(username);
-                   // if (ds.Tables[0].Rows.Count <= 0)
-                  //  {  
-                      //int id=int.Parse(GetSelectID("id"));
-                        //保存用户
-                        if (client.UpdateUser(username,userpwd,id) == true)
+                        if (client.UpdateUser(entity) == true)
                         {
                             BindGridConrtl();
+                        empty();
                             MessageBox.Show("成功");
                         }
                         else
@@ -262,6 +278,6 @@ namespace Client
             txtUserName.Text = "";
             txtUserPwd.Text = "";
         }
-        //dfdfhgh
+       
     }
 }

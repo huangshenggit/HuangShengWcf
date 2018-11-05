@@ -28,40 +28,40 @@ namespace Client.ServiceReference1 {
         System.Threading.Tasks.Task<System.Data.DataSet> GetUsersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/GetUserInfoById", ReplyAction="http://www.artech.com/CalculatorService/GetUserInfoByIdResponse")]
-        System.Data.DataSet GetUserInfoById(int id);
+        System.Data.DataSet GetUserInfoById(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/GetUserInfoById", ReplyAction="http://www.artech.com/CalculatorService/GetUserInfoByIdResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoByIdAsync(int id);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoByIdAsync(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/SaveUser", ReplyAction="http://www.artech.com/CalculatorService/SaveUserResponse")]
-        bool SaveUser(string username, string userpwd);
+        bool SaveUser(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/SaveUser", ReplyAction="http://www.artech.com/CalculatorService/SaveUserResponse")]
-        System.Threading.Tasks.Task<bool> SaveUserAsync(string username, string userpwd);
+        System.Threading.Tasks.Task<bool> SaveUserAsync(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/DeleteUser", ReplyAction="http://www.artech.com/CalculatorService/DeleteUserResponse")]
-        bool DeleteUser(int id);
+        bool DeleteUser(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/DeleteUser", ReplyAction="http://www.artech.com/CalculatorService/DeleteUserResponse")]
-        System.Threading.Tasks.Task<bool> DeleteUserAsync(int id);
+        System.Threading.Tasks.Task<bool> DeleteUserAsync(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/UpdateUser", ReplyAction="http://www.artech.com/CalculatorService/UpdateUserResponse")]
-        bool UpdateUser(string username, string userpwd, int id);
+        bool UpdateUser(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/UpdateUser", ReplyAction="http://www.artech.com/CalculatorService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string userpwd, int id);
+        System.Threading.Tasks.Task<bool> UpdateUserAsync(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/ByUserPwdAndUserName", ReplyAction="http://www.artech.com/CalculatorService/ByUserPwdAndUserNameResponse")]
-        System.Data.DataSet ByUserPwdAndUserName(string name, string pwd);
+        System.Data.DataSet ByUserPwdAndUserName(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/ByUserPwdAndUserName", ReplyAction="http://www.artech.com/CalculatorService/ByUserPwdAndUserNameResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> ByUserPwdAndUserNameAsync(string name, string pwd);
+        System.Threading.Tasks.Task<System.Data.DataSet> ByUserPwdAndUserNameAsync(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/ByUserNameUser", ReplyAction="http://www.artech.com/CalculatorService/ByUserNameUserResponse")]
-        System.Data.DataSet ByUserNameUser(string name);
+        System.Data.DataSet ByUserNameUser(Entity.EntityAdmin entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/ByUserNameUser", ReplyAction="http://www.artech.com/CalculatorService/ByUserNameUserResponse")]
-        System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(string name);
+        System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(Entity.EntityAdmin entity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -107,52 +107,52 @@ namespace Client.ServiceReference1 {
             return base.Channel.GetUsersAsync();
         }
         
-        public System.Data.DataSet GetUserInfoById(int id) {
-            return base.Channel.GetUserInfoById(id);
+        public System.Data.DataSet GetUserInfoById(Entity.EntityAdmin entity) {
+            return base.Channel.GetUserInfoById(entity);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoByIdAsync(int id) {
-            return base.Channel.GetUserInfoByIdAsync(id);
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetUserInfoByIdAsync(Entity.EntityAdmin entity) {
+            return base.Channel.GetUserInfoByIdAsync(entity);
         }
         
-        public bool SaveUser(string username, string userpwd) {
-            return base.Channel.SaveUser(username, userpwd);
+        public bool SaveUser(Entity.EntityAdmin entity) {
+            return base.Channel.SaveUser(entity);
         }
         
-        public System.Threading.Tasks.Task<bool> SaveUserAsync(string username, string userpwd) {
-            return base.Channel.SaveUserAsync(username, userpwd);
+        public System.Threading.Tasks.Task<bool> SaveUserAsync(Entity.EntityAdmin entity) {
+            return base.Channel.SaveUserAsync(entity);
         }
         
-        public bool DeleteUser(int id) {
-            return base.Channel.DeleteUser(id);
+        public bool DeleteUser(Entity.EntityAdmin entity) {
+            return base.Channel.DeleteUser(entity);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteUserAsync(int id) {
-            return base.Channel.DeleteUserAsync(id);
+        public System.Threading.Tasks.Task<bool> DeleteUserAsync(Entity.EntityAdmin entity) {
+            return base.Channel.DeleteUserAsync(entity);
         }
         
-        public bool UpdateUser(string username, string userpwd, int id) {
-            return base.Channel.UpdateUser(username, userpwd, id);
+        public bool UpdateUser(Entity.EntityAdmin entity) {
+            return base.Channel.UpdateUser(entity);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateUserAsync(string username, string userpwd, int id) {
-            return base.Channel.UpdateUserAsync(username, userpwd, id);
+        public System.Threading.Tasks.Task<bool> UpdateUserAsync(Entity.EntityAdmin entity) {
+            return base.Channel.UpdateUserAsync(entity);
         }
         
-        public System.Data.DataSet ByUserPwdAndUserName(string name, string pwd) {
-            return base.Channel.ByUserPwdAndUserName(name, pwd);
+        public System.Data.DataSet ByUserPwdAndUserName(Entity.EntityAdmin entity) {
+            return base.Channel.ByUserPwdAndUserName(entity);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> ByUserPwdAndUserNameAsync(string name, string pwd) {
-            return base.Channel.ByUserPwdAndUserNameAsync(name, pwd);
+        public System.Threading.Tasks.Task<System.Data.DataSet> ByUserPwdAndUserNameAsync(Entity.EntityAdmin entity) {
+            return base.Channel.ByUserPwdAndUserNameAsync(entity);
         }
         
-        public System.Data.DataSet ByUserNameUser(string name) {
-            return base.Channel.ByUserNameUser(name);
+        public System.Data.DataSet ByUserNameUser(Entity.EntityAdmin entity) {
+            return base.Channel.ByUserNameUser(entity);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(string name) {
-            return base.Channel.ByUserNameUserAsync(name);
+        public System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(Entity.EntityAdmin entity) {
+            return base.Channel.ByUserNameUserAsync(entity);
         }
     }
 }
