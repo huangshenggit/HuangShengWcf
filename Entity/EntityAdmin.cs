@@ -55,6 +55,9 @@ namespace Entity
         public string tel { get; set; }
 
         [DataMember]
+        public bool check { get; set; }
+
+        [DataMember]
         public Enum EnumState { get; set; }
 
     }
