@@ -56,6 +56,12 @@
   <wsdl:message name="CalculatorService_ByUserNameUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:ByUserNameUserResponse" />
   </wsdl:message>
+  <wsdl:message name="CalculatorService_mutiDel_InputMessage">
+    <wsdl:part name="parameters" element="tns:mutiDel" />
+  </wsdl:message>
+  <wsdl:message name="CalculatorService_mutiDel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:mutiDelResponse" />
+  </wsdl:message>
   <wsdl:portType name="CalculatorService">
     <wsdl:operation name="ADD">
       <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/ADD" message="tns:CalculatorService_ADD_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="ByUserNameUser">
       <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/ByUserNameUser" message="tns:CalculatorService_ByUserNameUser_InputMessage" />
       <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/ByUserNameUserResponse" message="tns:CalculatorService_ByUserNameUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="mutiDel">
+      <wsdl:input wsaw:Action="http://www.artech.com/CalculatorService/mutiDel" message="tns:CalculatorService_mutiDel_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.artech.com/CalculatorService/mutiDelResponse" message="tns:CalculatorService_mutiDel_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

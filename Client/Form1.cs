@@ -1,5 +1,6 @@
 ﻿using Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,8 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
+         
+          
             BindGridConrtl();
         }
        /// <summary>
@@ -139,17 +142,41 @@ namespace Client
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (ServiceReference1.CalculatorServiceClient client=new ServiceReference1.CalculatorServiceClient ())
+            //using (ServiceReference1.CalculatorServiceClient client=new ServiceReference1.CalculatorServiceClient ())
+            //{
+
+            //    DialogResult dr = MessageBox.Show("是否删除！", "提示！", MessageBoxButtons.OKCancel);
+
+            //    if (dr == DialogResult.OK)
+            //    {
+            //        getId();
+            //        EntityAdmin entity = new EntityAdmin();
+            //        //var GetId = GetSelectID("id");
+            //        //int Id = int.Parse(GetId);
+            //        var tt = getEntity(entity);
+            //        client.DeleteUser(tt);
+            //        BindGridConrtl();
+            //        MessageBox.Show("删除成功");
+            //        this.txtUserName.Text = "";
+            //        this.txtUserPwd.Text = "";
+            //    }
+            //    else if (dr == DialogResult.Cancel)
+            //    {
+
+            //    }
+
+            //}
+            using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
+
                 DialogResult dr = MessageBox.Show("是否删除！", "提示！", MessageBoxButtons.OKCancel);
 
                 if (dr == DialogResult.OK)
                 {
+                    var id= getId();
                     EntityAdmin entity = new EntityAdmin();
-                    //var GetId = GetSelectID("id");
-                    //int Id = int.Parse(GetId);
-                    var tt = getEntity(entity);
-                    client.DeleteUser(tt);
+
+                    client.mutiDel(id);
                     BindGridConrtl();
                     MessageBox.Show("删除成功");
                     this.txtUserName.Text = "";
@@ -157,15 +184,40 @@ namespace Client
                 }
                 else if (dr == DialogResult.Cancel)
                 {
-                  
+
                 }
-               
+
             }
         }
-        //private void btnUpdate_Click(object sender, EventArgs e)
-        //{
-           
-        //}
+
+        public string getId()
+        {
+            string id = null;
+            List<EntityAdmin> list = new List<EntityAdmin>();
+            int index;
+         List<int> num = new List<int>();
+            list = this.gridView1.DataSource as List<EntityAdmin>;
+            for (int i=0;i<list.Count;i++)
+            {
+               
+                if (list[i].check==true)
+                {
+                    index = list[i].id;
+                   num.Add(list[i].id);
+                } 
+               
+            }
+          
+            for (int i=0;i<num.Count;i++)
+            {
+               
+                id=id+","+num[i];
+               
+            }
+            int length = id.Length;
+           id = id.Substring(1, length-1);
+            return id;
+        }
         /// <summary>
         /// 选中每行时文本框显示当前行的数据
         /// </summary>
@@ -177,11 +229,7 @@ namespace Client
             var tt = getEntity(entity);
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
-                // DataSet _result = client.GetUserInfoById(id);
-                //List<EntityAdmin> list= GetList(_result);
-                //this.txtUserName.Text=_result.Tables[0].Rows[i]["UserName"].ToString();
-                //this.txtUserName.Text = _result.Tables[0].Rows[0]["UserName"].ToString();
-                // this.txtUserPwd.Text = _result.Tables[0].Rows[0]["UserPwd"].ToString();
+              
                 this.txtUserName.Text = tt.username;
                 this.txtUserPwd.Text = tt.userpwd;
 
@@ -278,6 +326,28 @@ namespace Client
             txtUserName.Text = "";
             txtUserPwd.Text = "";
         }
-       
+        public EntityAdmin GetProductAll()
+        {
+            EntityAdmin entity = new EntityAdmin();
+          
+            return entity;
+        }
+        public void duoxuan()
+        {
+            using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
+            {
+
+              //  DataTable dd = ds.Tables[0];
+                DataSet ds = client.GetUsers();
+               var dt = ds.Tables[0];
+                dt.Columns.Add("selected", System.Type.GetType("System.Boolean"));
+
+                dt.Columns["selected"].DefaultValue = Boolean.FalseString;
+
+                gridControl1.DataSource = dt;
+            }
+        }
+
+
     }
 }

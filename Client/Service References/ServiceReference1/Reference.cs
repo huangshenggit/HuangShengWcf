@@ -62,6 +62,12 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/ByUserNameUser", ReplyAction="http://www.artech.com/CalculatorService/ByUserNameUserResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(Entity.EntityAdmin entity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/mutiDel", ReplyAction="http://www.artech.com/CalculatorService/mutiDelResponse")]
+        bool mutiDel(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.artech.com/CalculatorService/mutiDel", ReplyAction="http://www.artech.com/CalculatorService/mutiDelResponse")]
+        System.Threading.Tasks.Task<bool> mutiDelAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -153,6 +159,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> ByUserNameUserAsync(Entity.EntityAdmin entity) {
             return base.Channel.ByUserNameUserAsync(entity);
+        }
+        
+        public bool mutiDel(string id) {
+            return base.Channel.mutiDel(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> mutiDelAsync(string id) {
+            return base.Channel.mutiDelAsync(id);
         }
     }
 }
