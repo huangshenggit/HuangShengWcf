@@ -76,6 +76,13 @@ namespace Contracts
         /// <returns></returns>
         [OperationContract]
         DataSet ByUserNameUser(EntityAdmin entity);
+        /// <summary>
+        /// 多行删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool mutiDel(string id);
 
     }
 }
