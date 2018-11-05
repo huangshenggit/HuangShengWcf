@@ -35,7 +35,7 @@ namespace Contracts
         /// <param name="id"></param>
         /// <returns></returns>
         [OperationContract]
-        DataSet GetUserInfoById(int id);
+        DataSet GetUserInfoById(EntityAdmin entity);
 
         /// <summary>
         /// 保存
@@ -44,7 +44,7 @@ namespace Contracts
         /// <param name="userpwd"></param>
         /// <returns></returns>
         [OperationContract]
-        bool SaveUser(string username, string userpwd);
+        bool SaveUser(EntityAdmin entity);
 
         /// <summary>
         /// 删除
@@ -52,7 +52,7 @@ namespace Contracts
         /// <param name="id"></param>
         /// <returns></returns>
         [OperationContract]
-        bool DeleteUser(int id);
+        bool DeleteUser(EntityAdmin entity);
 
         /// <summary>
         /// 修改
@@ -61,13 +61,13 @@ namespace Contracts
         /// <param name="userpwd"></param>
         /// <returns></returns>
         [OperationContract]
-        bool UpdateUser(string username, string userpwd,int id);
+        bool UpdateUser(EntityAdmin entity);
 
         /// <summary>
         /// 通过用户名和密码进行模糊查询
         /// </summary>
         [OperationContract]
-        DataSet ByUserPwdAndUserName(string name,string pwd);
+        DataSet ByUserPwdAndUserName(EntityAdmin entity);
             
         /// <summary>
         /// 通过用户名获取数据
@@ -75,7 +75,7 @@ namespace Contracts
         /// <param name="name"></param>
         /// <returns></returns>
         [OperationContract]
-        DataSet ByUserNameUser(string name);
+        DataSet ByUserNameUser(EntityAdmin entity);
 
     }
 }
