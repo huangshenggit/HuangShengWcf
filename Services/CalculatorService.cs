@@ -65,5 +65,11 @@ namespace Service
             string sql = "select * from Admin where UserName Like '%"+entity.username+"%' and  UserPwd Like '%" + entity.userpwd + "%'";
             return SQLHelper.GetAdmin(sql);
         }
+        //多行删除
+        public bool mutiDel(string id)
+        {
+            string sql = "delete from Admin where Id in("+id+")";
+            return SQLHelper.ExcuteSql(sql);
+        }
     }
 }
