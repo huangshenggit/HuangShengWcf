@@ -77,12 +77,18 @@ namespace Contracts
         [OperationContract]
         DataSet ByUserNameUser(EntityAdmin entity);
         /// <summary>
-        /// 多行删除
+        /// 通过字符串多行删除
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [OperationContract]
         bool mutiDel(string id);
 
+        /// <summary>
+        /// 通过数组实现多行删除
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        bool mtDel(List<int> num);
     }
 }
