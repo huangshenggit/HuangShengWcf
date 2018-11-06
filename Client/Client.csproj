@@ -131,6 +131,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cBusiness\cBusiness.csproj">
+      <Project>{BFE99AEC-92F6-4B02-8EC6-BE440B13B22D}</Project>
+      <Name>cBusiness</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{a0ad1a71-1e4d-4bb3-a7f4-a6f9c85ff406}</Project>
       <Name>Entity</Name>

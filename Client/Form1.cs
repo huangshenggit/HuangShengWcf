@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using cBusiness;
+using Entity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,13 +18,9 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
-
         }
-
         private void Form1_Load(object sender, EventArgs e)
-        {
-         
-          
+        { 
             BindGridConrtl();
         }
        /// <summary>
@@ -33,40 +30,10 @@ namespace Client
         {
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
-                //int x = 9;
-                //int y = 10;
-                //this.txtUserName.Text = client.ADD(x, y).ToString();
-
                 var _result = client.GetUsers();
-                GetList(_result);
-
-                this.gridControl1.DataSource = GetList(_result);
-
+               user.GetList(_result);
+                this.gridControl1.DataSource = user.GetList(_result);
             }
-        }
-
-        /// <summary>
-        /// 将DataSet转换为泛型
-        /// </summary>
-        /// <param name="ds"></param>
-        /// <returns></returns>
-        public List<EntityAdmin> GetList(DataSet ds)
-        {
-            List<EntityAdmin> list = new List<EntityAdmin>();
-
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                EntityAdmin entity = new EntityAdmin();
-                //var t = ds.Tables[0].Rows[i]["UserName"].ToString();
-                entity.id = int.Parse(ds.Tables[0].Rows[i]["Id"].ToString());
-                entity.username = ds.Tables[0].Rows[i]["UserName"].ToString();
-                entity.userpwd = ds.Tables[0].Rows[i]["UserPwd"].ToString();
-                entity.name = ds.Tables[0].Rows[i]["Name"].ToString();
-                entity.sex = ds.Tables[0].Rows[i]["Sex"].ToString();
-                entity.tel = ds.Tables[0].Rows[i]["Tel"].ToString();
-                list.Add(entity);
-            }
-            return list;
         }
         /// <summary>
         /// 获取用户Id
@@ -84,19 +51,12 @@ namespace Client
         
            
             
-            //获取点击的实体
+          
         private EntityAdmin getEntity(EntityAdmin entity)
         {
             var tt = gridView1.GetRow(gridView1.FocusedRowHandle) as EntityAdmin;
             return tt;
         }
-
-        /// <summary>
-        /// 添加用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-      
         /// <summary>
         /// 新增数据
         /// </summary>
@@ -142,30 +102,7 @@ namespace Client
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //using (ServiceReference1.CalculatorServiceClient client=new ServiceReference1.CalculatorServiceClient ())
-            //{
-
-            //    DialogResult dr = MessageBox.Show("是否删除！", "提示！", MessageBoxButtons.OKCancel);
-
-            //    if (dr == DialogResult.OK)
-            //    {
-            //        getId();
-            //        EntityAdmin entity = new EntityAdmin();
-            //        //var GetId = GetSelectID("id");
-            //        //int Id = int.Parse(GetId);
-            //        var tt = getEntity(entity);
-            //        client.DeleteUser(tt);
-            //        BindGridConrtl();
-            //        MessageBox.Show("删除成功");
-            //        this.txtUserName.Text = "";
-            //        this.txtUserPwd.Text = "";
-            //    }
-            //    else if (dr == DialogResult.Cancel)
-            //    {
-
-            //    }
-
-            //}
+          
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
 
@@ -173,10 +110,18 @@ namespace Client
 
                 if (dr == DialogResult.OK)
                 {
-                    var id= getId();
-                    EntityAdmin entity = new EntityAdmin();
+                    // var id = getId();
+                    //EntityAdmin entity = new EntityAdmin();
 
-                    client.mutiDel(id);
+                    //  client.mutiDel(id);
+
+                    List<EntityAdmin> list = new List<EntityAdmin>();
+
+                    list = getId();
+                    for (int i = 0; i <list.Count; i++)
+                    {
+                        client.DeleteUser(list[i]);
+                    }
                     BindGridConrtl();
                     MessageBox.Show("删除成功");
                     this.txtUserName.Text = "";
@@ -190,34 +135,7 @@ namespace Client
             }
         }
 
-        public string getId()
-        {
-            string id = null;
-            List<EntityAdmin> list = new List<EntityAdmin>();
-            int index;
-         List<int> num = new List<int>();
-            list = this.gridView1.DataSource as List<EntityAdmin>;
-            for (int i=0;i<list.Count;i++)
-            {
-               
-                if (list[i].check==true)
-                {
-                    index = list[i].id;
-                   num.Add(list[i].id);
-                } 
-               
-            }
-          
-            for (int i=0;i<num.Count;i++)
-            {
-               
-                id=id+","+num[i];
-               
-            }
-            int length = id.Length;
-           id = id.Substring(1, length-1);
-            return id;
-        }
+     
         /// <summary>
         /// 选中每行时文本框显示当前行的数据
         /// </summary>
@@ -259,9 +177,8 @@ namespace Client
             using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
             {
                
-               DataSet _result =client.ByUserPwdAndUserName(entity);
-            List<EntityAdmin> list=  GetList(_result);
-
+                DataSet _result =client.ByUserPwdAndUserName(entity);
+                List<EntityAdmin> list= user.GetList(_result);
                 this.gridControl1.DataSource = list;
             }
         }
@@ -326,28 +243,55 @@ namespace Client
             txtUserName.Text = "";
             txtUserPwd.Text = "";
         }
-        public EntityAdmin GetProductAll()
+
+        /// <summary>
+        /// 获取删除的ID
+        /// </summary>
+        /// <returns></returns>
+        //public string getId()
+        //{
+        //    string id = null;
+        //    List<EntityAdmin> list = new List<EntityAdmin>();
+        //    int index;
+        //    List<int> num = new List<int>();
+        //    list = this.gridView1.DataSource as List<EntityAdmin>;
+        //    for (int i = 0; i < list.Count; i++)
+        //    {
+
+        //        if (list[i].check == true)
+        //        {
+        //            index = list[i].id;
+        //            num.Add(list[i].id);
+        //        }
+
+        //    }
+
+        //    for (int i = 0; i < num.Count; i++)
+        //    {
+
+        //        id = id + "," + num[i];
+
+        //    }
+        //    int length = id.Length;
+        //    id = id.Substring(1, length - 1);
+        //    return id;
+        //}
+        public List<EntityAdmin> getId()
         {
-            EntityAdmin entity = new EntityAdmin();
+           
+            List<EntityAdmin> list = new List<EntityAdmin>();
           
-            return entity;
-        }
-        public void duoxuan()
-        {
-            using (ServiceReference1.CalculatorServiceClient client = new ServiceReference1.CalculatorServiceClient())
+            //  List<int> num = new List<int>();
+            List<EntityAdmin> lists = new List<EntityAdmin>();
+            list = this.gridView1.DataSource as List<EntityAdmin>;
+            for (int i=0;i<list.Count;i++)
             {
-
-              //  DataTable dd = ds.Tables[0];
-                DataSet ds = client.GetUsers();
-               var dt = ds.Tables[0];
-                dt.Columns.Add("selected", System.Type.GetType("System.Boolean"));
-
-                dt.Columns["selected"].DefaultValue = Boolean.FalseString;
-
-                gridControl1.DataSource = dt;
+                if (list[i].check==true)
+                {
+                    lists.Add(list[i]);
+                }
             }
+            return lists;
         }
-
-
     }
 }
